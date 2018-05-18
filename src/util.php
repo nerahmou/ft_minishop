@@ -1,6 +1,7 @@
 <?php
 
 function is_set_in() {
+    if (count(func_get_args(0)) === 0) return false;
     foreach(array_slice(func_get_args(), 1) as $v) {
         if (!isset(func_get_arg(0)[$v])) return false;
     }

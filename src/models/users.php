@@ -1,7 +1,5 @@
 <?php
 
-require '../util.php';
-
 function new_user($firstname, $lastname, $email, $password, $rank = 0) {
     return $user = array(
         'firstname' => $firstname,

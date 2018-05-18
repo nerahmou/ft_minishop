@@ -2,20 +2,22 @@
 
 session_start();
 
-require_once '../src/util.php';
-require_once '../src/models/users.php';
-require_once '../src/services/users_service.php';
+require '../src/util.php';
+require '../src/models/users.php';
+require '../src/services/users_service.php';
 
 //
 // POST USER CREATION
 //
-$msg = '';
-if (($msg = user_is_valid())) {
-    $user = user_from_post();
-    users_insert($user);
-    set_success_message('Vous vous êtes bien enregistré, connectez-vous !');
+if ($_POST) {
+    $msg = '';
+    if (($msg = user_is_valid())) {
+        echo $msg;
+        $user = user_from_post();
+        articles_insert($user);
+        set_success_message('Vous vous êtes bien enregistré, connectez-vous !');
+    } else set_error_message($msg);
 }
-else set_error_message($msg);
 
 ?>
 

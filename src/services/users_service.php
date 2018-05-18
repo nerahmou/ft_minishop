@@ -1,6 +1,6 @@
 <?php
 
-$users = load_users();
+$users = [];
 $users_folder = "../data/users.data";
 
 function users_load() {
@@ -19,7 +19,7 @@ function users_save() {
 function users_insert($user) {
     global $users;
     $users[$user['email']] =  $user;
-    save_users();
+    users_save();
 }
 
 function users_from_email($email) {
@@ -28,3 +28,5 @@ function users_from_email($email) {
         if ($user_mail === $email) return $val;
     return NULL;
 }
+
+$users = users_load();
