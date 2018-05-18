@@ -1,10 +1,10 @@
 <?php
 
 session_start();
+ob_start();
 
-require '../src/util.php';
-require '../src/models/users.php';
-require '../src/services/users_service.php';
+require_once('../src/function.php');
+require_once('../src/services/users_service.php');
 
 //
 // POST USER CREATION
