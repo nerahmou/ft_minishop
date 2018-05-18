@@ -11,6 +11,7 @@ Model de l'objet:
 	 firstName: String (min 2 chars)
 	 email: String (email, unique)
 	 password: String (sha512)
+	 rank: Int default 0 => 0 = user, 1 = admin
     
 
 ## Articles et catégories
