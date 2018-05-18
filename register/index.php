@@ -11,10 +11,9 @@ require_once('../src/services/users_service.php');
 //
 if ($_POST) {
     $msg = '';
-    if (($msg = user_is_valid())) {
-        echo $msg;
+    if (!is_string($msg = user_is_valid()) && $msg) {
         $user = user_from_post();
-        articles_insert($user);
+        users_insert($user);
         set_success_message('Vous vous êtes bien enregistré, connectez-vous !');
     } else set_error_message($msg);
 }
@@ -33,12 +32,17 @@ if ($_POST) {
 
 <?php html_message() ?>
 
-<form action="POST">
-    <input type="text"  name="lastname" placeholder="Nom">
-    <input type="text"  name="firstname" placeholder="Prénom">
-    <input type="email"  name="email" placeholder="Email">
-    <input type="password"  name="password" placeholder="Mot de passe">
-    <input type="password"  name="confirm_password" placeholder="Confirmation mot de passe">
+<form method="post">
+    <input type="text" name="lastname" placeholder="Nom">
+    <br>
+    <input type="text" name="firstname" placeholder="Prénom">
+    <br>
+    <input type="email" name="email" placeholder="Email">
+    <br>
+    <input type="password" name="password" placeholder="Mot de passe">
+    <br>
+    <input type="password" name="confirm_password" placeholder="Confirmation mot de passe">
+    <br>
     <input type="submit">
 </form>
 
