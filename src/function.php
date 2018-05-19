@@ -6,6 +6,7 @@
 //
 //--------------------------------------------------------------
 
+require_once 'services/categories_service.php';
 require_once 'services/users_service.php';
 require_once 'services/articles_service.php';
 
@@ -42,6 +43,9 @@ function is_email($email)
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
+function is_url($img) {
+    return filter_var($img, FILTER_VALIDATE_URL);
+}
 /**
  * @param $element to remove
  * @param $array aray

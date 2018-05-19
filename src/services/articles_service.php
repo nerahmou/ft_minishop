@@ -51,4 +51,9 @@ function articles_from_category($category)
     return $ret;
 }
 
+function articles() {
+    global $articles;
+    return $articles;
+}
+
 $articles = articles_load();
