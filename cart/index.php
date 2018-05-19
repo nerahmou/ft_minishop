@@ -10,7 +10,7 @@ if (isset($_POST, $_POST['order']))
     echo "<script>alert('commande validee');</script>";
 ?>
 
-<h2 style="text-align: center">Mon panier :</h2>
+    <h2 style="text-align: center">Mon panier :</h2>
 
 <?php if (!empty($_SESSION['cart'])) {?>
     <table style="border: burlywood 3px solid; border-collapse: collapse; margin: auto">
@@ -35,9 +35,9 @@ if (isset($_POST, $_POST['order']))
             </tr>
         <?php } ?>
     </table>
-    <?php if (user_is_connected()){?>
+    <?php if (!user_is_connected()){?>
         <form method="post" style="text-align: center; margin-top: 10px">
             <button type="submit" name="order">Valider la commande</button>
         </form>
-    <?php}?>
+    <?php }?>
 <?php} else {?><p>Le panier est vide</p><?php }?>
