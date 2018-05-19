@@ -4,9 +4,6 @@ session_start();
 
 require_once '../src/function.php';
 
-if (isset($_POST, $_POST['id']))
-    insert_article(articles_from_id($_POST['id']), 1);
-
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
 
