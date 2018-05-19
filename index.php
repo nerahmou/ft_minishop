@@ -6,7 +6,7 @@ require_once 'src/services/users_service.php';
 require_once 'src/function.php';
 
 if (isset($_POST, $_POST['id']))
-    insert_article(articles_from_id($_POST['id']), 1);
+    insert_article(articles_from_id($_POST['id']), $_POST['quantity']);
 
 ?>
 <html>
@@ -25,18 +25,12 @@ if (isset($_POST, $_POST['id']))
 <li><a href="/logout/">Se déconnecter</a></li>
 <?php } ?>
 
-<a href="/cart/">
+<a href="/cart/"><img style="width: 100px; float: right" src="https://cdn.pixabay.com/photo/2013/07/12/17/01/shopping-cart-151685_1280.png" alt="cart"></a>
+<p style="display: inline-block;float: right; color: red; font-size: 2em"> <?php if(!empty($_SESSION['cart'])) echo count($_SESSION['cart']); ?></p>
 
-    <img style="width: 100px; float: right" src="https://cdn.pixabay.com/photo/2013/07/12/17/01/shopping-cart-151685_1280.png" alt="cart"></a>
-<p style="display: inline-block;float: right; color: red; font-size: 2em"><?php
-    if(!empty($_SESSION['cart']))
-        echo count($_SESSION['cart']);
-    ?></p>
 <?php if (user_is_connected()) { ?>
     <p>Vous êtes connecté <?php echo ucfirst(user_get_firstname()) . ' ' . ucfirst(user_get_lastname()) ?></p>
     <li><a href="/admin/add/article.php">Ajouter un article</a></li>
-
-
 <?php } ?>
 
 <h3>Liste des articles : </h3>
@@ -51,6 +45,7 @@ foreach (articles() as $key => $elem) { ?>
         <p /> Catégories : <?php echo implode(', ', article_categories($elem));?></p>
         <form method="post">
             <button name="id" value="<?php echo article_id($elem)?>" type="submit">Ajouter au panier</button>
+            <input style="width: 15%" type="number" min="1" name="quantity" value="1">
         </form>
     </div>
 <?php } ?>

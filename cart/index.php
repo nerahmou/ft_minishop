@@ -6,13 +6,21 @@ require_once '../src/function.php';
 
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
+if (isset($_POST, $_POST['command'])) {
+    if (user_is_connected())
+        echo "<script>alert('commande validee');</script>";
+    else
+        echo "<script>alert('Vous devez vous connecté');</script>";
+}
 
 ?>
-<h2>Mon panier :</h2>
+
+
+<h2 style="text-align: center">Mon panier :</h2>
 <?php
 if (!empty($_SESSION['cart'])) {
     ?>
-    <table style="border: burlywood 3px solid; border-collapse: collapse">
+    <table style="border: burlywood 3px solid; border-collapse: collapse; margin: auto">
         <tr style="border: burlywood 3px solid;">
             <th>Nom</th>
             <th>Quantité</th>
@@ -38,7 +46,11 @@ if (!empty($_SESSION['cart'])) {
         }
         ?>
     </table>
+    <form method="post" style="text-align: center; margin-top: 10px">
+        <button type="submit" name="command">Valider la commande</button>
+    </form>
     <?php
+
 }
 else
 {?><p>Le panier est vide</p><?php ;}?>
