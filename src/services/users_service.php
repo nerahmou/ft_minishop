@@ -2,7 +2,7 @@
 
 /**
  * This file is here to communicate with the storage.
- * This file don't interact with the objects, refer to the apropriate model
+ * This file don't interact with the objects, refer to the appropriate model
  * to interact with them.
  *
  * Only read/write on storage and existence check are made.
