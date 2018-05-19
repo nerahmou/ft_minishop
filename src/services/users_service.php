@@ -15,6 +15,7 @@ $users_folder = $prev . "users.dat";
 function users_load()
 {
     global $users_folder;
+    var_dump(file_exists($users_folder));
     if (file_exists($users_folder))
         return json_decode(file_get_contents($users_folder), true);
     return [];
@@ -55,3 +56,5 @@ function users_can_login($email, $password) {
 }
 
 $users = users_load();
+
+var_dump($users);

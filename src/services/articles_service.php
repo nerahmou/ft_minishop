@@ -10,7 +10,7 @@
 
 $articles = [];
 $prev = '/var/www/private/';
-$users_folder = $prev . "articles.dat";
+$articles_folder = $prev . "articles.dat";
 
 function articles_load()
 {

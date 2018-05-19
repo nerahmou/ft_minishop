@@ -54,6 +54,20 @@ function user_get_firstname() {
     return NULL;
 }
 
+function user_get_rank() {
+    if ($_SESSION && isset($_SESSION['email'])) {
+        return users_from_email($_SESSION['email'])['rank'];
+    }
+    return NULL;
+}
+
+function user_is_admin() {
+    if ($_SESSION && isset($_SESSION['email'])) {
+        return user_get_rank() === 1;
+    }
+    return false;
+}
+
 function user_is_connected() {
     return $_SESSION && isset($_SESSION['email']);
 }
