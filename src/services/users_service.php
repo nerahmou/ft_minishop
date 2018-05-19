@@ -1,20 +1,20 @@
 <?php
 
 $users = [];
-$users_folder = "/var/www/private/users.dat";
+$users_folder = "/var/www/html/private/users.dat";
 
 function users_load()
 {
     global $users_folder;
     if (file_exists($users_folder))
-        return json_decode(file_get_contents($users_folder));
+        return json_decode(file_get_contents($users_folder), true);
     return [];
 }
 
 function users_save()
 {
     global $users, $users_folder;
-    if (!file_exists($users_folder)) mkdir("/var/www/private/");
+    if (!file_exists($users_folder)) mkdir("/var/www/html/private/");
     file_put_contents($users_folder, json_encode($users));
 }
 
@@ -36,6 +36,13 @@ function users_from_email($email)
     global $users;
     if (isset($users[$email])) return $users[$email];
     return NULL;
+}
+
+function users_can_login($email, $password) {
+    $user = users_from_email($email);
+    if ($user)
+        return $user['password'] === hash('sha512', $password);
+    return false;
 }
 
 $users = users_load();

@@ -1,20 +1,29 @@
 <?php
 
 session_start();
-ob_start();
 
 require_once('../src/function.php');
-require_once('../src/services/users_service.php');
+
+$can_disp_msg = true;
+
+//
+// IF CONNECTED REDIRECT TO HOME PAGE
+//
+if ($_SESSION && isset($_SESSION['email'])) {
+    header('Location: /');
+}
 
 //
 // POST USER CREATION
 //
 if ($_POST) {
     $msg = '';
-    if (!is_string($msg = user_is_valid()) && $msg) {
+    if (!is_string($msg = user_is_valid_register()) && $msg) {
         $user = user_from_post();
         users_insert($user);
         set_success_message('Vous vous êtes bien enregistré, connectez-vous !');
+        $can_disp_msg = false;
+        header('Location: /login/');
     } else set_error_message($msg);
 }
 
@@ -30,8 +39,11 @@ if ($_POST) {
 </head>
 <body>
 
-<?php html_message() ?>
+<h1>S'inscrire</h1>
 
+<?php $can_disp_msg ? html_message() : 0 ?>
+
+<br>
 <form method="post">
     <input type="text" name="lastname" placeholder="Nom">
     <br>

@@ -2,20 +2,20 @@
 
 
 $articles = [];
-$articles_folder = "/var/www/private/articles.dat";
+$articles_folder = "/var/www/html/private/articles.dat";
 
 function articles_load()
 {
     global $articles_folder;
     if (file_exists($articles_folder))
-        return json_decode(file_get_contents($articles_folder));
+        return json_decode(file_get_contents($articles_folder), true);
     return [];
 }
 
 function articles_save()
 {
     global $articles, $articles_folder;
-    if (!file_exists($articles_folder)) mkdir("/var/www/private/");
+    if (!file_exists($articles_folder)) mkdir("/var/www/html/private/");
     file_put_contents($articles_folder, json_encode($articles));
 }
 
@@ -37,9 +37,10 @@ function articles_from_id($id)
 function articles_from_category($category)
 {
     global $articles;
+    $ret = [];
     foreach ($articles as $val)
-        if (in_array($val['categories'], $category)) return $val;
-    return NULL;
+        if (in_array($val['categories'], $category)) array_push($ret, $val);
+    return $ret;
 }
 
-$users = articles_load();
+$articles = articles_load();

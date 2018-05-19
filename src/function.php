@@ -1,7 +1,10 @@
 <?php
 
+require_once 'services/users_service.php';
+require_once 'services/articles_service.php';
+
 require_once 'models/users.php';
-require_once 'models/users.php';
+require_once 'models/articles.php';
 
 
 function is_set_in()
@@ -60,6 +63,8 @@ function get_success_message()
 
 function html_message()
 {
-    if (has_error_message()) { ?> <h3>Error: <?php echo get_error_message() ?></h3> <?php }
-    if (has_success_message()) { ?> <h3>Success: <?php echo get_success_message() ?></h3> <?php }
+    if (!isset(getallheaders()['Location'])) {
+        if (has_error_message()) { ?> <h3>Error: <?php echo get_error_message() ?></h3> <?php }
+        if (has_success_message()) { ?> <h3>Success: <?php echo get_success_message() ?></h3> <?php }
+    }
 }
