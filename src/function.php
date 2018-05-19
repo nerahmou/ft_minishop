@@ -12,7 +12,7 @@ require_once 'services/articles_service.php';
 
 require_once 'models/users.php';
 require_once 'models/articles.php';
-
+require_once 'models/cart.php';
 /**
  * This functions check if all variables after first parameters
  * are set in the array passed in the first parameter.
