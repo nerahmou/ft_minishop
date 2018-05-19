@@ -6,7 +6,7 @@ require_once '../src/function.php';
 
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
-if (isset($_POST, $_POST['command'])) {
+if (isset($_POST, $_POST['order'])) {
     if (user_is_connected())
         echo "<script>alert('commande validee');</script>";
     else
@@ -47,7 +47,7 @@ if (!empty($_SESSION['cart'])) {
         ?>
     </table>
     <form method="post" style="text-align: center; margin-top: 10px">
-        <button type="submit" name="command">Valider la commande</button>
+        <button type="submit" name="order">Valider la commande</button>
     </form>
     <?php
 
