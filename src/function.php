@@ -42,6 +42,19 @@ function is_email($email)
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
+/**
+ * @param $element to remove
+ * @param $array aray
+ * @return array
+ */
+function array_delete($element, $arr){
+    $array = $arr;
+    $index = array_search($element, $array);
+    if($index !== false){
+        unset($array[$index]);
+    }
+    return array_values($array);
+}
 //--------------------------------------------------------------
 //
 // ERRORS/SUCCESS handlers
