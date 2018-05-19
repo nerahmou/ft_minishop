@@ -43,8 +43,7 @@ if ($_POST) {
         foreach (categories() as $k) { ?>
             <input type="checkbox" name="categories[]" value="<?php echo $k ?>" /><?php echo ucfirst($k) ?><br />
         <?php
-        }
-    ?>
+        } ?>
     <input type="submit">
 </form>
 

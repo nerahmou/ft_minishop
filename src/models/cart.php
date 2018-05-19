@@ -1,43 +1,45 @@
 <?php
 
 function create_cart(){
-    if (!isset($_SESSION['cart'])){
-        $_SESSION['cart']=array();
-        $_SESSION['cart']['name'] = array();
-        $_SESSION['cart']['description'] = array();
-        $_SESSION['cart']['img'] = array();
-        $_SESSION['cart']['price'] = array();
-        $_SESSION['cart']['quantity'] = array();
-        $_SESSION['cart']['stock'] = array();
-        $_SESSION['cart']['categories'] = array();
-        $_SESSION['cart']['color'] = array();
-    }
+    if (!isset($_SESSION['cart']))
+        $_SESSION['cart'] = array();
     return true;
 }
 
-function is_in_cart($article_name)
+function is_in_cart($article)
 {
-    $position = array_search($article_name,  $_SESSION['cart']['name']);
-    if ($position !== false)
-        return $position;
+    for ($i = 0; $i < count($_SESSION['cart']); $i++)
+        if ($_SESSION['cart'][$i]['id'] === article_id($article))
+            return $i;
     return false;
 }
 
-function articles_insert($article)
+function insert_article($article, $quantity)
 {
     create_cart();
-    if (($position = is_in_cart($article['name'])))
-        $_SESSION['cart']['quantity'][$position] += $article['quantity'];
+    if ($quantity > $article['stock'])
+        return false;
+    if (($position = is_in_cart($article)) !== false)
+        $_SESSION['cart'][$position]['quantity'] += $quantity;
     else
-    {
-        array_push($_SESSION['cart']['name'], $article['name']);
-        array_push($_SESSION['cart']['description'], $article['description']);
-        array_push($_SESSION['cart']['img'], $article['img']);
-        array_push($_SESSION['cart']['price'], $article['price']);
-        array_push($_SESSION['cart']['quantity'], $article['quantity']);
-        array_push($_SESSION['cart']['stock'], $article['stock']);
-        array_push($_SESSION['cart']['categories'], $article['categories']);
-        array_push($_SESSION['cart']['color'], $article['color']);
-    }
+        array_push($_SESSION['cart'], array(
+                'id' => article_id($article),
+                'quantity' => $quantity,
+                'color' => $article['colors'])
+        );
+}
 
+function drop_article($article_id)
+{
+    if (!isset($_SESSION['cart']))
+        return ;
+    $tmp = array();
+    foreach ($_SESSION['cart'] as $article)
+        if ($article['id'] != $article_id)
+        {
+            array_push( $tmp, $article);
+
+        }
+    $_SESSION['cart'] = $tmp;
+    unset($tmp);
 }
