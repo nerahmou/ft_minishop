@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is here to communicate with the storage.
+ * This file don't interact with the objects, refer to the apropriate model
+ * to interact with them.
+ *
+ * Only read/write on storage and existence check are made.
+ */
+
 $users = [];
 $users_folder = "/var/www/html/private/users.dat";
 

@@ -4,16 +4,16 @@ session_start();
 
 require_once('../src/function.php');
 
-//
 // IF CONNECTED REDIRECT TO HOME PAGE
-//
 if ($_SESSION && isset($_SESSION['email'])) {
     header('Location: /');
 }
 
+//--------------------------------------------------------------
 //
-// POST USER LOGIN
+// POST login validation, here insert user in session
 //
+//--------------------------------------------------------------
 if ($_POST) {
     $msg = '';
     if (!is_string($msg = user_is_valid_login()) && $msg) {

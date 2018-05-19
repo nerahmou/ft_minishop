@@ -6,16 +6,17 @@ require_once('../src/function.php');
 
 $can_disp_msg = true;
 
-//
+
 // IF CONNECTED REDIRECT TO HOME PAGE
-//
 if ($_SESSION && isset($_SESSION['email'])) {
     header('Location: /');
 }
 
+//--------------------------------------------------------------
 //
-// POST USER CREATION
+// POST registration validation, here to insert user
 //
+//--------------------------------------------------------------
 if ($_POST) {
     $msg = '';
     if (!is_string($msg = user_is_valid_register()) && $msg) {

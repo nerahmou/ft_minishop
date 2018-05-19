@@ -1,12 +1,28 @@
 <?php
 
+//--------------------------------------------------------------
+//
+// REQUIRES of services/models
+//
+//--------------------------------------------------------------
+
 require_once 'services/users_service.php';
 require_once 'services/articles_service.php';
 
 require_once 'models/users.php';
 require_once 'models/articles.php';
 
-
+/**
+ * This functions check if all variables after first parameters
+ * are set in the array passed in the first parameter.
+ *
+ * Example : is_set_in($_POST, 'email', 'password')
+ *  check if in $_POST there is a key email and password.
+ *
+ * @param 1st param is an array ($_POST, $_GET...)
+ * @param String... then list of string separate with ','
+ * @return bool
+ */
 function is_set_in()
 {
     foreach (array_slice(func_get_args(), 1) as $v) {
@@ -15,11 +31,29 @@ function is_set_in()
     return true;
 }
 
+/**
+ * Check if the email in first param is a valid email.
+ *
+ * @param $email
+ * @return bool
+ */
 function is_email($email)
 {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
+//--------------------------------------------------------------
+//
+// ERRORS/SUCCESS handlers
+// Short methods to flash message, getter delete the msg_* after
+// usage. So only one time read.
+//
+// Use html_message() to render message. If you use location header
+// create a custom variable like $can_disp_msg and set it to true by
+// default, if you use the header location set it to false. Then when
+// you use html_message() check if $can_disp_msg is true.
+//
+//--------------------------------------------------------------
 
 function set_error_message($msg)
 {

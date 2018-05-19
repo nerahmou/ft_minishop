@@ -1,5 +1,11 @@
 <?php
 
+//--------------------------------------------------------------
+//
+// CREATOR of user from post/variables
+//
+//--------------------------------------------------------------
+
 function new_user($firstname, $lastname, $email, $password, $rank = 0)
 {
     return $user = array(
@@ -20,6 +26,12 @@ function user_from_post()
         $_POST['password']
     );
 }
+
+//--------------------------------------------------------------
+//
+// GETTERS of user from session
+//
+//--------------------------------------------------------------
 
 function user_get_email() {
     if ($_SESSION && isset($_SESSION['email'])) {
@@ -45,6 +57,12 @@ function user_get_firstname() {
 function user_is_connected() {
     return $_SESSION && isset($_SESSION['email']);
 }
+
+//--------------------------------------------------------------
+//
+// VALIDATOR of user from post
+//
+//--------------------------------------------------------------
 
 function user_is_valid_register()
 {
