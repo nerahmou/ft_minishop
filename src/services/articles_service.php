@@ -42,12 +42,19 @@ function articles_from_id($id)
     return NULL;
 }
 
+function articles_remove($id) {
+    global $articles;
+    unset($articles[$id]);
+    $articles = array_filter($articles);
+    articles_save();
+}
+
 function articles_from_category($category)
 {
     global $articles;
     $ret = [];
     foreach ($articles as $val)
-        if (in_array($val['categories'], $category)) array_push($ret, $val);
+        if (in_array($category, $val['categories'])) array_push($ret, $val);
     return $ret;
 }
 

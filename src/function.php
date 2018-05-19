@@ -119,3 +119,33 @@ function html_message()
         if (has_success_message()) { ?> <h3>Success: <?php echo get_success_message() ?></h3> <?php }
     }
 }
+function html_header($name) {
+    echo "
+    <title>$name</title>
+    
+    <style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #eeeeee;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #eeeeee;
+    }
+</style>
+</head>
+<body>
+
+<h1>$name</h1>";
+}
+
+function html_footer() {
+    echo "</body></html>";
+}

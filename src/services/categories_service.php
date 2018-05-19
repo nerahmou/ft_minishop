@@ -27,21 +27,10 @@ function categories_save()
     file_put_contents($categories_folder, json_encode($categories));
 }
 
-function category_from_name($name) {
+function categories_remove($name) {
     global $categories;
-    if (in_array($name, $categories)) {
-        return $name;
-    }
-    return NULL;
-}
-
-function get_categories() {
-    global $categories;
-    return $categories;
-}
-
-function remove_categoy($name) {
-    $cat = category_from_name($name);
+    if ($name === 'other') return false;
+    $cat = categories_from_name($name);
     if ($cat) {
         $articles = articles_from_category($cat);
         foreach ($articles as $id => $article) {
@@ -51,8 +40,32 @@ function remove_categoy($name) {
             $article['categories'] = $new_cat;
             articles_insert($article);
         }
+        $categories = array_delete($name, $categories);
+        categories_save();
+        return true;
+    }
+    return false;
+}
+
+function categories_add($name) {
+    global $categories;
+    array_push($categories, $name);
+    categories_save();
+}
+
+function categories_from_name($name) {
+    global $categories;
+    if (in_array($name, $categories)) {
+        return $name;
     }
     return NULL;
+}
+
+
+
+function categories() {
+    global $categories;
+    return $categories;
 }
 
 $categories = categories_load();

@@ -17,34 +17,30 @@ if ($_POST) {
 
 ?>
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ajouter un article</title>
-</head>
-<body>
-
-<h1>Ajouter un article</h1>
+<?php html_header('Ajouter un article') ?>
 
 <?php html_message() ?>
 
 <br>
 <form method="post">
+    <label for="name">Nom</label> <br>
     <input type="text" name="name" placeholder="Nom de l'article">
     <br>
+    <label for="description">Description</label> <br>
     <textarea name="description" placeholder="Description"> </textarea>
     <br>
+    <label for="img">Image</label> <br>
     <input type="url" name="img" placeholder="Image de l'article">
     <br>
+    <label for="price">Prix</label> <br>
     <input type="number" name="price" placeholder="Prix">
     <br>
+    <label for="price">Stock</label> <br>
     <input type="number" name="stock" placeholder="Stock">
     <br>
+    <label for="categories">Catégories</label> <br>
     <?php
-        foreach (get_categories() as $k) { ?>
+        foreach (categories() as $k) { ?>
             <input type="checkbox" name="categories[]" value="<?php echo $k ?>" /><?php echo ucfirst($k) ?><br />
         <?php
         }
@@ -52,6 +48,5 @@ if ($_POST) {
     <input type="submit">
 </form>
 
-</body>
-</html>
+<?php html_footer() ?>
 

@@ -23,28 +23,19 @@ if ($_POST) {
 }
 ?>
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Se connecter</title>
-</head>
-<body>
-
-<h1>Se connecter</h1>
+<?php html_header('Se connecter') ?>
 
 <?php html_message() ?>
 
 <br>
 <form method="post">
+    <label for="email">Email</label> <br>
     <input type="email" name="email" placeholder="Email">
     <br>
+    <label for="password">Mot de passe</label> <br>
     <input type="password" name="password" placeholder="Mot de passe">
     <br>
     <input type="submit">
 </form>
 
-</body>
-</html>
+<?php html_footer() ?>
