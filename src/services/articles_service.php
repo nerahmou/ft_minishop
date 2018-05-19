@@ -23,7 +23,7 @@ function articles_load()
 function articles_save()
 {
     global $articles, $articles_folder, $prev;
-    if (!file_exists($articles_folder)) mkdir($prev);
+    if (!file_exists($prev)) mkdir($prev);
     file_put_contents($articles_folder, json_encode($articles));
 }
 

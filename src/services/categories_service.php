@@ -23,13 +23,13 @@ function categories_load()
 function categories_save()
 {
     global $categories, $categories_folder, $prev;
-    if (!file_exists($categories_folder)) mkdir($prev);
+    if (!file_exists($prev)) mkdir($prev);
     file_put_contents($categories_folder, json_encode($categories));
 }
 
 function category_from_name($name) {
     global $categories;
-    if (in_array($categories, $name)) {
+    if (in_array($name, $categories)) {
         return $name;
     }
     return NULL;

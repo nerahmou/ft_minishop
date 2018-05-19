@@ -23,7 +23,7 @@ function users_load()
 function users_save()
 {
     global $users, $users_folder, $prev;
-    if (!file_exists($users_folder)) mkdir($prev);
+    if (!file_exists($prev)) mkdir($prev);
     file_put_contents($users_folder, json_encode($users));
 }
 

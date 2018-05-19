@@ -19,6 +19,18 @@ function new_article($name, $description, $img, $price, $stock, $categories = ['
     );
 }
 
+function article_from_post() {
+    echo "   dewlkowe";
+    return new_article(
+        $_POST['name'],
+        $_POST['description'],
+        $_POST['img'],
+        floatval($_POST['price']),
+        floatval($_POST['stock']),
+        $_POST['categories']
+    );
+}
+
 //--------------------------------------------------------------
 //
 // GETTER of article
@@ -64,12 +76,16 @@ function article_colors($a) {
 //--------------------------------------------------------------
 
 function article_is_valid_creation() {
+    var_dump($_POST);
+    echo "hoy";
     if (is_set_in($_POST, 'name', 'description', 'img', 'price', 'categories', 'stock')) {
-        if (count($_POST['name']) < 5) return 'Longueur du nom invalide. (min 5 caractères)';
-        if (count($_POST['description']) < 10) return 'Longueur de la description invalide. (min 10 caractères)';
-        if (is_url($_POST['img'])) return 'L\'image n\'est pas valide.';
-        if (floatval($_POST['price']) >= 0) return 'Prix invalide.';
-        if (floatval($_POST['stock']) >= 0) return 'Stock invalide.';
+        echo "   hey";
+
+        if (strlen($_POST['name']) < 5) return 'Longueur du nom invalide. (min 5 caractères)';
+        if (strlen($_POST['description']) < 10) return 'Longueur de la description invalide. (min 10 caractères)';
+        if (!is_url($_POST['img'])) return 'L\'image n\'est pas valide.';
+        if (floatval($_POST['price']) < 0) return 'Prix invalide.';
+        if (floatval($_POST['stock']) < 0) return 'Stock invalide.';
         foreach ($_POST['categories'] as $cat) {
             if (!category_from_name($cat)) return "Catégorie invalide: $cat";
         }

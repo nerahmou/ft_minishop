@@ -7,7 +7,12 @@ require_once '../../src/function.php';
 if (!user_is_admin()) header('Location: /');
 
 if ($_POST) {
-    var_dump($_POST);
+    $msg = '';
+    if (!is_string($msg = article_is_valid_creation()) && $msg) {
+        $article = article_from_post();
+        articles_insert($article);
+        set_success_message('Vous avez créé l\'article ' . article_name($article) . '.');
+    } else set_error_message($msg);
 }
 
 ?>
@@ -34,9 +39,9 @@ if ($_POST) {
     <br>
     <input type="url" name="img" placeholder="Image de l'article">
     <br>
-    <input type="number" placeholder="Prix">
+    <input type="number" name="price" placeholder="Prix">
     <br>
-    <input type="number" placeholder="Stock">
+    <input type="number" name="stock" placeholder="Stock">
     <br>
     <?php
         foreach (get_categories() as $k) { ?>
