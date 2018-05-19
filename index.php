@@ -25,8 +25,11 @@ if (isset($_POST, $_POST['id']))
 <li><a href="/logout/">Se déconnecter</a></li>
 <?php } ?>
 
-<a href="/cart/"><img style="width: 100px; float: right" src="https://cdn.pixabay.com/photo/2013/07/12/17/01/shopping-cart-151685_1280.png" alt="cart"></a>
-<p style="display: inline-block;float: right; color: red; font-size: 2em"> <?php if(!empty($_SESSION['cart'])) echo count($_SESSION['cart']); ?></p>
+<?php if (!user_is_admin()) {?>
+    <a href="/cart/"><img style="width: 100px; float: right" src="https://cdn.pixabay.com/photo/2013/07/12/17/01/shopping-cart-151685_1280.png" alt="cart"></a>
+    <p style="display: inline-block;float: right; color: red; font-size: 2em"> <?php if(!empty($_SESSION['cart'])) echo count($_SESSION['cart']); ?></p>
+<?php } ?>
+
 
 <?php if (user_is_connected()) { ?>
     <p>Vous êtes connecté <?php echo ucfirst(user_get_firstname()) . ' ' . ucfirst(user_get_lastname()) ?></p>
@@ -43,10 +46,12 @@ foreach (articles() as $key => $elem) { ?>
         <p /> Prix : <?php echo $elem['price'] ?></p>
         <img style="width: 200px; " src="<?php echo $elem['img'] ?>"/>
         <p /> Catégories : <?php echo implode(', ', article_categories($elem));?></p>
+        <?php if(!user_is_admin()) {?>
         <form method="post">
             <button name="id" value="<?php echo article_id($elem)?>" type="submit">Ajouter au panier</button>
             <input style="width: 15%" type="number" min="1" name="quantity" value="1">
         </form>
+        <?php } ?>
     </div>
 <?php } ?>
 </body>
