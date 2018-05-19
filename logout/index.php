@@ -6,8 +6,8 @@ require_once('../src/function.php');
 
 
 // LOGOUT = need to unset variable session
-if ($_SESSION && isset($_SESSION['email'])) {
-    $_SESSION['email'] = NULL;
+if (user_is_connected()) {
+    $_SESSION['email'] = null;
 }
 
 // THEN redirect to home page

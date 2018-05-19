@@ -8,7 +8,7 @@ $can_disp_msg = true;
 
 
 // IF CONNECTED REDIRECT TO HOME PAGE
-if ($_SESSION && isset($_SESSION['email'])) {
+if (user_is_connected()) {
     header('Location: /');
 }
 

@@ -5,7 +5,7 @@ session_start();
 require_once('../src/function.php');
 
 // IF CONNECTED REDIRECT TO HOME PAGE
-if ($_SESSION && isset($_SESSION['email'])) {
+if (user_is_connected()) {
     header('Location: /');
 }
 

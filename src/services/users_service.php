@@ -47,11 +47,27 @@ function users_from_email($email)
     return NULL;
 }
 
-function users_can_login($email, $password) {
+function users_remove($email)
+{
+    global $users;
+    if (users_exist($email)) {
+        unset($users[$email]);
+    }
+    users_save();
+}
+
+function users_can_login($email, $password)
+{
     $user = users_from_email($email);
     if ($user)
         return $user['password'] === hash('sha512', $password);
     return false;
+}
+
+function users()
+{
+    global $users;
+    return $users;
 }
 
 $users = users_load();
