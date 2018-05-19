@@ -9,7 +9,8 @@
  */
 
 $users = [];
-$users_folder = "/var/www/html/private/users.dat";
+$prev = '/var/www/private/';
+$users_folder = $prev . "users.dat";
 
 function users_load()
 {
@@ -21,8 +22,8 @@ function users_load()
 
 function users_save()
 {
-    global $users, $users_folder;
-    if (!file_exists($users_folder)) mkdir("/var/www/html/private/");
+    global $users, $users_folder, $prev;
+    if (!file_exists($users_folder)) mkdir($prev);
     file_put_contents($users_folder, json_encode($users));
 }
 

@@ -9,7 +9,8 @@
  */
 
 $articles = [];
-$articles_folder = "/var/www/html/private/articles.dat";
+$prev = '/var/www/private/';
+$users_folder = $prev . "articles.dat";
 
 function articles_load()
 {
@@ -21,8 +22,8 @@ function articles_load()
 
 function articles_save()
 {
-    global $articles, $articles_folder;
-    if (!file_exists($articles_folder)) mkdir("/var/www/html/private/");
+    global $articles, $articles_folder, $prev;
+    if (!file_exists($articles_folder)) mkdir($prev);
     file_put_contents($articles_folder, json_encode($articles));
 }
 
