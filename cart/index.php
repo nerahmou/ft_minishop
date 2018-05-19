@@ -26,8 +26,8 @@ if (isset($_POST, $_POST['order']))
                 <td style="border: burlywood 3px solid"><?php echo articles_from_id($line['id'])['name'] ?></td>
                 <td style="border: burlywood 3px solid"><?php echo $line['quantity'] ?></td>
                 <td style="border: burlywood 3px solid"><?php if (empty($line['color'])) echo "Pas de couleur"; else echo $line['color']; ?></td>
-                <td style="border: burlywood 3px solid"><img style="width: 50px"
-                                                             src="<?php echo articles_from_id($line['id'])['img']; ?>">
+                <td style="border: burlywood 3px solid">
+                    <img style="width: 50px" src="<?php echo articles_from_id($line['id'])['img']; ?>">
                 </td>
                 <td style="border: burlywood 3px solid">
                     <form method="post">
@@ -41,7 +41,9 @@ if (isset($_POST, $_POST['order']))
         <form method="post" style="text-align: center; margin-top: 10px">
             <button type="submit" name="order">Valider la commande</button>
         </form>
-    <?php } else echo "Vous devez vous connecter pour valider le panier";
+    <?php }
+    else
+        echo "Vous devez vous connecter pour valider le panier";
 } else {
     echo "<p>Le panier est vide</p>";
 } ?>
