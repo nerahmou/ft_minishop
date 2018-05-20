@@ -29,6 +29,7 @@ html_header('Ajouter une catégorie') ?>
 <form method="post">
     <input type="text" name="name" placeholder="Nom de l'article">
     <br>
+    <br>
     <input type="submit">
 </form>
 

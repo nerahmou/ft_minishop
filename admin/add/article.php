@@ -48,6 +48,7 @@ html_header('Ajouter un article') ?>
             <input type="checkbox" name="categories[]" value="<?php echo $k ?>" /><?php echo ucfirst($k) ?><br />
         <?php
         } ?>
+    <br>
     <input type="submit">
 </form>
 
