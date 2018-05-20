@@ -110,9 +110,3 @@ function article_is_valid_creation()
         return true;
     }
 }
-
-/* Inject new articles to test cart.
- *
- * $ar = new_article("test1", "description", "https://www.woodbrass.com/images/woodbrass/EAGLETONE+SOLEA.JPG", 100, 100);
- * articles_insert($ar);
- */

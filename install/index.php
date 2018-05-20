@@ -14,8 +14,8 @@ if ($_POST && !conf_is_created()) {
 
 
 html_header('Installation');
-
 html_message();
+
 ?>
 
 <form method="post">

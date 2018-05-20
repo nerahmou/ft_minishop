@@ -1,16 +1,19 @@
 <?php
 
 session_start();
-
 require_once '../../src/function.php';
-
 need_install();
-
 if (!user_is_admin()) header('Location: /');
 
+//EMAIL INCORRECT
 if ($_GET && isset($_GET['email']))
     if (!users_from_email($_GET['email'])) header('Location: /admin/');
 
+//--------------------------------------------------------------
+//
+// POST user edition
+//
+//--------------------------------------------------------------
 if ($_POST && $_GET && isset($_GET['email'])) {
     $user_o = users_from_email($_GET['email']);
     $msg = '';
@@ -21,16 +24,11 @@ if ($_POST && $_GET && isset($_GET['email'])) {
     } else set_error_message($msg);
 }
 
-?>
-
-<?php
 include '../../public/navbar_admin_p.php';
-
 html_header("Edition de l'utilisateur " . ucfirst(users_from_email($_GET['email'])['firstname']) . ' ' . ucfirst(users_from_email($_GET['email'])['lastname']));
+html_message();
 
 ?>
-
-<?php html_message(); ?>
 
     <form method="post">
         <label for="lastname">Nom</label><br>

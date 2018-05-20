@@ -1,9 +1,7 @@
 <?php
 
 session_start();
-
 require_once('../src/function.php');
-
 need_install();
 
 // IF CONNECTED REDIRECT TO HOME PAGE
@@ -23,24 +21,22 @@ if ($_POST) {
         header('Location: /');
     } else set_error_message($msg);
 }
-?>
-
-<?php
 
 include '../public/navbar.php';
-html_header('Se connecter') ?>
+html_header('Se connecter');
+html_message()
 
-<?php html_message() ?>
+?>
 
-<br>
-<form method="post">
-    <label for="email">Email</label> <br>
-    <input type="email" name="email" placeholder="Email">
     <br>
-    <label for="password">Mot de passe</label> <br>
-    <input type="password" name="password" placeholder="Mot de passe">
-    <br>
-    <input type="submit" value="Ok">
-</form>
+    <form method="post">
+        <label for="email">Email</label> <br>
+        <input type="email" name="email" placeholder="Email">
+        <br>
+        <label for="password">Mot de passe</label> <br>
+        <input type="password" name="password" placeholder="Mot de passe">
+        <br>
+        <input type="submit" value="Ok">
+    </form>
 
 <?php html_footer() ?>

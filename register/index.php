@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 require_once('../src/function.php');
 need_install();
 
@@ -29,32 +28,30 @@ if ($_POST) {
     } else set_error_message($msg);
 }
 
+include '../public/navbar.php';
+html_header('S\'inscrire');
+if ($can_disp_msg) html_message()
+
 ?>
 
-<?php
-include '../public/navbar.php';
-html_header('S\'inscrire') ?>
-
-<?php $can_disp_msg ? html_message() : 0 ?>
-
-<br>
-<form method="post">
-    <label for="lastname">Nom</label><br>
-    <input type="text" name="lastname" placeholder="Nom">
     <br>
-    <label for="firstname">Prénom</label><br>
-    <input type="text" name="firstname" placeholder="Prénom">
-    <br>
-    <label for="email">Email</label><br>
-    <input type="email" name="email" placeholder="Email">
-    <br>
-    <label for="password">Mot de passe</label><br>
-    <input type="password" name="password" placeholder="Mot de passe">
-    <br>
-    <label for="confirm_password">Confirmation mot de passe</label><br>
-    <input type="password" name="confirm_password" placeholder="Confirmation mot de passe">
-    <br>
-    <input type="submit">
-</form>
+    <form method="post">
+        <label for="lastname">Nom</label><br>
+        <input type="text" name="lastname" placeholder="Nom">
+        <br>
+        <label for="firstname">Prénom</label><br>
+        <input type="text" name="firstname" placeholder="Prénom">
+        <br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" placeholder="Email">
+        <br>
+        <label for="password">Mot de passe</label><br>
+        <input type="password" name="password" placeholder="Mot de passe">
+        <br>
+        <label for="confirm_password">Confirmation mot de passe</label><br>
+        <input type="password" name="confirm_password" placeholder="Confirmation mot de passe">
+        <br>
+        <input type="submit" value="Ok">
+    </form>
 
 <?php html_footer() ?>

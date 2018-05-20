@@ -1,3 +1,5 @@
+<?php need_install() ?>
+
 <ul>
     <li><a href="/admin/">Utilisateurs</a></li>
     <li><a href="/admin/add/article.php">Ajouter un article</a></li>

@@ -2,10 +2,10 @@
 
 session_start();
 require_once '../src/function.php';
-
 need_install();
 include '../public/navbar_cart.php';
-html_header('Mon panier');
+
+
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
 if (isset($_POST, $_POST['order'])) {
@@ -13,9 +13,8 @@ if (isset($_POST, $_POST['order'])) {
     set_success_message("Commande Validé !");
 }
 
-?>
-
-<?php echo get_success_message() ?>
+html_header('Mon panier');
+html_message() ?>
 
 <?php if (!empty($_SESSION['cart'])) { ?>
     <table style="width: 75%;">

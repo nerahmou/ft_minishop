@@ -1,21 +1,11 @@
 <?php
 
 session_start();
-
 require_once 'src/services/users_service.php';
 require_once 'src/function.php';
-
 need_install();
 
 $can_disp_msg = true;
-
-if (isset($_POST, $_POST['id']))
-    if (!insert_article(articles_from_id($_POST['id']), $_POST['quantity'])) {
-        set_error_message("Quantité superieur au stock disponible : (" . articles_from_id($_POST['id'])['stock'] . ")");
-        $can_disp_msg = false;
-        header('location: /');
-    }
-    else header('location: /');
 
 function get_articles() {
     $articles =  (($_GET && isset($_GET['category']) && categories_from_name($_GET['category'])))
@@ -24,48 +14,56 @@ function get_articles() {
     return array_filter($articles, function ($e) {
         if ($_GET && isset($_GET['search']) && !empty($_GET['search'])) {
             return  strpos(strtolower(article_name($e)), strtolower($_GET['search'])) !== false ||
-                    strpos(strtolower(article_description($e)), strtolower($_GET['search'])) !== false;
+                strpos(strtolower(article_description($e)), strtolower($_GET['search'])) !== false;
         }
         return true;
     });
 }
 
+function get_category() {
+    if ($_GET && isset($_GET['category']) && categories_from_name($_GET['category']))
+        return $_GET['category'];
+    return null;
+}
+
+
+//--------------------------------------------------------------
+//
+// POST add to cart then location to the / page
+//
+//--------------------------------------------------------------
+if (isset($_POST, $_POST['id'])) {
+    if (!insert_article(articles_from_id($_POST['id']), $_POST['quantity'])) {
+        set_error_message("Quantité superieur au stock disponible : (" . articles_from_id($_POST['id'])['stock'] . ")");
+        $can_disp_msg = false;
+        header('location: /?' . $_SERVER['QUERY_STRING']);
+    } else header('location: /?' . $_SERVER['QUERY_STRING']);
+}
+
 
 include 'public/navbar.php';
 html_header(config()['name']);
+
 ?>
-
-
-
-
-
-<?php if (user_is_connected()) { ?>
-    <p>Vous êtes connecté <?php echo ucfirst(user_get_firstname()) . ' ' . ucfirst(user_get_lastname()) ?></p>
-<?php } ?>
 
 <h3>Liste des articles : </h3>
 
-<?php
+<?php if ($can_disp_msg) html_message(); ?>
 
-if ($can_disp_msg)
-    html_message();
-
-?>
-
-<h4>Trier:
+<h5>Filtrer par:&#160;&#160;&#160;
     <form method="get" style="display: inline">
         <select name="category">
             <option value="all">Toutes</option>
             <?php foreach (categories() as $cat) { ?>
-                <option value="<?php echo $cat ?>"><?php echo ucfirst($cat) ?></option>
+                <option <?php echo $cat === get_category() ? 'selected' : '' ?> value="<?php echo $cat ?>"><?php echo ucfirst($cat) ?></option>
             <?php } ?>
-        </select>
+        </select>&#160;&#160;&#160;
+        <label for="search">Rechercher: </label>
         <input type="text" name="search" placeholder="Rechercher un mot" value="<?php echo !empty($_GET['search']) ? $_GET['search'] : '' ?>">
+        &#160;&#160;&#160;
         <input type="submit" value="Go!">
     </form>
-
-
-</h4>
+</h5>
 
 <section id="page">
     <?php foreach (get_articles() as $key => $elem) { ?>

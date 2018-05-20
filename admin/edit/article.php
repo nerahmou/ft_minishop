@@ -1,16 +1,19 @@
 <?php
 
 session_start();
-
 require_once '../../src/function.php';
-
 need_install();
-
 if (!user_is_admin()) header('Location: /');
 
-if ($_GET && isset($_GET['id']))
-    if (!articles_from_id($_GET['id'])) header('Location: /admin/');
+// ID INCORRECT
+if ($_GET && isset($_GET['id']) && !articles_from_id($_GET['id']))
+    header('Location: /admin/');
 
+//--------------------------------------------------------------
+//
+// POST article edition
+//
+//--------------------------------------------------------------
 if ($_POST && $_GET && isset($_GET['id'])) {
     $article_o = articles_from_id($_GET['id']);
     $msg = '';
@@ -22,13 +25,12 @@ if ($_POST && $_GET && isset($_GET['id'])) {
     } else set_error_message($msg);
 }
 
-?>
 
-<?php
 include '../../public/navbar_admin_p.php';
-html_header("Edition article " . article_id(articles_from_id($_GET['id']))); ?>
+html_header("Edition article " . article_id(articles_from_id($_GET['id'])));
+html_message();
 
-<?php html_message(); ?>
+?>
 
     <form method="post">
         <label for="name">Nom</label> <br>
@@ -55,7 +57,7 @@ html_header("Edition article " . article_id(articles_from_id($_GET['id']))); ?>
             <?php
         }
         ?>
-        <input type="submit" value="Valider">
+        <input type="submit" value="Ok">
     </form>
 
 <?php

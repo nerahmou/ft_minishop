@@ -2,12 +2,14 @@
 
 session_start();
 require_once '../../src/function.php';
+need_install();
+if (!user_is_admin()) header('Location: /');
 
 require '../../public/navbar_admin_p.php';
 html_header('Administration');
 
 if (!empty($_GET['id'])) {
-    valid_order(orders_from_id($_GET['id']));
+    order_is_valid(orders_from_id($_GET['id']));
     header("Location: ../");
 }
 ?>

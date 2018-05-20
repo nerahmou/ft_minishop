@@ -1,16 +1,14 @@
 <?php
 
 session_start();
-
 require_once '../src/function.php';
-
 need_install();
-
 if (!user_is_admin()) header('Location: /');
 
 
 include '../public/navbar_admin.php';
 html_header('Administration');
+
 ?>
 
 <h4>Utilisateurs</h4>

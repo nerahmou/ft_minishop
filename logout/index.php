@@ -1,9 +1,7 @@
 <?php
 
 session_start();
-
 require_once('../src/function.php');
-
 need_install();
 
 // LOGOUT = need to unset variable session

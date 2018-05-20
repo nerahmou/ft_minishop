@@ -1,13 +1,15 @@
 <?php
 
 session_start();
-
 require_once '../../src/function.php';
-
 need_install();
-
 if (!user_is_admin()) header('Location: /');
 
+//--------------------------------------------------------------
+//
+// POST article creation
+//
+//--------------------------------------------------------------
 if ($_POST) {
     $msg = '';
     if (!is_string($msg = article_is_valid_creation()) && $msg) {
@@ -17,13 +19,12 @@ if ($_POST) {
     } else set_error_message($msg);
 }
 
-?>
 
-<?php
 include '../../public/navbar_admin_p.php';
-html_header('Ajouter un article') ?>
+html_header('Ajouter un article');
+html_message()
 
-<?php html_message() ?>
+?>
 
 <br>
 <form method="post">
@@ -44,12 +45,12 @@ html_header('Ajouter un article') ?>
     <br>
     <label for="categories">Catégories</label> <br>
     <?php
-        foreach (categories() as $k) { ?>
-            <input type="checkbox" name="categories[]" value="<?php echo $k ?>" /><?php echo ucfirst($k) ?><br />
+    foreach (categories() as $k) { ?>
+        <input type="checkbox" name="categories[]" value="<?php echo $k ?>" /><?php echo ucfirst($k) ?><br/>
         <?php
-        } ?>
+    } ?>
     <br>
-    <input type="submit" value="Valider">
+    <input type="submit" value="Ok">
 </form>
 
 <?php html_footer() ?>
