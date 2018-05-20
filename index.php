@@ -5,12 +5,12 @@ session_start();
 require_once 'src/services/users_service.php';
 require_once 'src/function.php';
 
-if (!conf_is_created()) header('Location: /install/');
+need_install();
 
 if (isset($_POST, $_POST['id']))
     insert_article(articles_from_id($_POST['id']), $_POST['quantity']);
 
-html_header('')
+html_header(config()['name']);
 ?>
 
 
