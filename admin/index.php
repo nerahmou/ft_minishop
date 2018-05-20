@@ -19,6 +19,7 @@ html_header('Administration');
         <th>Nom</th>
         <th>Prénom</th>
         <th>Email</th>
+        <th>Status</th>
         <th>Action</th>
     </tr>
 
@@ -27,6 +28,7 @@ html_header('Administration');
             <td><?php echo $val['lastname'] ?></td>
             <td><?php echo $val['firstname'] ?></td>
             <td><?php echo $val['email'] ?></td>
+            <td><?php if ($val['rank']) echo "Administrateur"; else echo "Client"; ?></td>
             <td>
                 <a href="/admin/delete/user.php?email=<?php echo $val['email'] ?>">Supprimer</a>
                 <a href="/admin/edit/user.php?email=<?php echo $val['email'] ?>">Editer</a>

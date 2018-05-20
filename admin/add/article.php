@@ -34,13 +34,13 @@ html_header('Ajouter un article') ?>
     <textarea name="description" placeholder="Description"> </textarea>
     <br>
     <label for="img">Image</label> <br>
-    <input type="url" name="img" placeholder="Image de l'article">
+    <input type="url" name="img" placeholder="Url">
     <br>
     <label for="price">Prix</label> <br>
-    <input type="number" name="price" placeholder="Prix">
+    <input type="number" name="price" min="0" placeholder="Prix">
     <br>
     <label for="price">Stock</label> <br>
-    <input type="number" name="stock" placeholder="Stock">
+    <input type="number" name="stock" min="1" placeholder="Stock">
     <br>
     <label for="categories">Catégories</label> <br>
     <?php
@@ -49,7 +49,7 @@ html_header('Ajouter un article') ?>
         <?php
         } ?>
     <br>
-    <input type="submit">
+    <input type="submit" value="Valider">
 </form>
 
 <?php html_footer() ?>

@@ -8,7 +8,7 @@ html_header('Administration');
 
 if (!empty($_GET['id'])) {
     valid_order(orders_from_id($_GET['id']));
-    $_GET['id']="";
+    header("Location: ../");
 }
 ?>
 

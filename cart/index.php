@@ -4,7 +4,8 @@ session_start();
 require_once '../src/function.php';
 
 need_install();
-
+include '../public/navbar_cart.php';
+html_header('Mon panier');
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
 if (isset($_POST, $_POST['order'])) {
@@ -14,14 +15,11 @@ if (isset($_POST, $_POST['order'])) {
 
 ?>
 
-
-    <h2 style="text-align: center">Mon panier :</h2>
-
 <?php echo get_success_message() ?>
 
 <?php if (!empty($_SESSION['cart'])) { ?>
-    <table style="border: burlywood 3px solid; border-collapse: collapse; margin: auto">
-        <tr style="border: burlywood 3px solid;">
+    <table style="width: 75%;">
+        <tr >
             <th>Nom</th>
             <th>Quantité</th>
             <th>Prix</th>
@@ -32,14 +30,14 @@ if (isset($_POST, $_POST['order'])) {
         </tr>
         <?php foreach ($_SESSION['cart'] as $line) { ?>
             <tr>
-                <td style="border: burlywood 3px solid"><?php echo articles_from_id($line['id'])['name'] ?></td>
-                <td style="border: burlywood 3px solid"><?php echo $line['quantity'] ?></td>
-                <td style="border: burlywood 3px solid"><?php echo number_format(articles_from_id($line['id'])['price'] , 0 , "." , " " ) . " " . config()['currency']?></td>
-                <td style="border: burlywood 3px solid"><?php if (empty($line['color'])) echo "Pas de couleur"; else echo $line['color']; ?></td>
-                <td style="border: burlywood 3px solid">
+                <td ><?php echo articles_from_id($line['id'])['name'] ?></td>
+                <td ><?php echo $line['quantity'] ?></td>
+                <td ><?php echo number_format(articles_from_id($line['id'])['price'] , 0 , "." , " " ) . " " . config()['currency']?></td>
+                <td ><?php if (!empty($line['color'])) echo $line['color']; ?></td>
+                <td >
                     <img style="width: 50px" src="<?php echo articles_from_id($line['id'])['img']; ?>">
                 </td >
-                <td style="border: burlywood 3px solid">
+                <td >
                     <form method="post">
                         <button name="delete" value="<?php echo $line['id'] ?>">Supprimer</button>
                     </form>
@@ -48,7 +46,7 @@ if (isset($_POST, $_POST['order'])) {
         <?php } ?>
         <tr>
             <td colspan="5">Total</td>
-            <td style="border: burlywood 3px solid"><?php echo number_format(get_total() , 0 , "." , " " ) . " " . config()['currency']?> </td>
+            <td ><?php echo number_format(get_total() , 0 , "." , " " ) . " " . config()['currency']?> </td>
         </tr>
     </table>
     <?php if (user_is_connected()) { ?>

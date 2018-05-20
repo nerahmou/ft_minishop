@@ -43,9 +43,9 @@ html_header("Edition de l'utilisateur " . ucfirst(users_from_email($_GET['email'
         <input type="email" name="email" value="<?php echo users_from_email($_GET['email'])['email'] ?>">
         <br>
         <label for="email">Rang</label><br>
-        <input type="number" name="rank" value="<?php echo users_from_email($_GET['email'])['rank'] ?>">
+        <input type="number" name="rank" min="0" max="1" value="<?php echo users_from_email($_GET['email'])['rank'] ?>">
         <br>
-        <input type="submit">
+        <input type="submit" value="Valider">
     </form>
 
 <?php

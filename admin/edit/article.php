@@ -41,10 +41,10 @@ html_header("Edition article " . article_id(articles_from_id($_GET['id']))); ?>
         <input type="url" name="img" value="<?php echo article_img(articles_from_id($_GET['id'])) ?>">
         <br>
         <label for="price">Prix</label> <br>
-        <input type="number" name="price" value="<?php echo article_price(articles_from_id($_GET['id'])) ?>">
+        <input type="number" name="price" min="0" value="<?php echo article_price(articles_from_id($_GET['id'])) ?>">
         <br>
         <label for="price">Stock</label> <br>
-        <input type="number" name="stock" value="<?php echo article_stock(articles_from_id($_GET['id'])) ?>">
+        <input type="number" name="stock" min="0" value="<?php echo article_stock(articles_from_id($_GET['id'])) ?>">
         <br>
         <label for="categories">Catégories</label> <br>
         <?php
@@ -55,7 +55,7 @@ html_header("Edition article " . article_id(articles_from_id($_GET['id']))); ?>
             <?php
         }
         ?>
-        <input type="submit">
+        <input type="submit" value="Valider">
     </form>
 
 <?php

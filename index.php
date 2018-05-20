@@ -76,11 +76,12 @@ if ($can_disp_msg)
                 <h2><?php echo $elem['name']; ?></h2>
                 <h5>Catégorie(s) : <?php echo implode(', ', article_categories($elem));?></h5>
                 <p><?php echo article_description_trunc($elem) ?></p>
-                <form method="post">
-                    <button name="id" value="<?php echo article_id($elem)?>" type="submit">Ajouter au panier</button>
+                <form method="post" <?php if (!$elem['stock']) echo "style='background-color:red'"?> >
+                    <button name="id" value="<?php echo article_id($elem)?>" type="submit" <?php if (!$elem['stock']) echo "disabled"?>><?php if (!$elem['stock']) echo "Produit épuisé";else echo "Ajouter au panier"; ?></button>
                     <input type="number" min="1" name="quantity" value="1">
                     <div class="icon"><img src="https://partage.draftman.fr/icon.svg" alt=""></div>
                 </form>
+
             </div>
         </div>
     </div>

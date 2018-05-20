@@ -9,7 +9,7 @@ need_install();
 if (!user_is_admin()) header('Location: /');
 
 if ($_POST && isset($_POST['name'])) {
-    if (!categories_from_name($_POST['name'])) {
+    if (!empty($_POST['name']) && !categories_from_name(strtolower($_POST['name']))) {
         categories_add(strtolower($_POST['name']));
         set_success_message("Catégorie " . $_POST['name'] . " créé.");
     }
@@ -27,10 +27,11 @@ html_header('Ajouter une catégorie') ?>
 
 <br>
 <form method="post">
-    <input type="text" name="name" placeholder="Nom de l'article">
+    <label for="name">Nom de catégorie</label> <br>
+    <input type="text" name="name">
     <br>
     <br>
-    <input type="submit">
+    <input type="submit" value="Valider">
 </form>
 
 <?php html_footer() ?>

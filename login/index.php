@@ -37,7 +37,7 @@ if ($_POST) {
     <label for="password">Mot de passe</label> <br>
     <input type="password" name="password" placeholder="Mot de passe">
     <br>
-    <input type="submit">
+    <input type="submit" value="Ok">
 </form>
 
 <?php html_footer() ?>
