@@ -16,3 +16,90 @@ td, th {
 tr:nth-child(even) {
     background-color: #eeeeee;
 }
+
+#page {
+    width: 100%;
+    height: 100vh;
+}
+
+section .item {
+    margin: 20px 0 0 20px;
+    float: left;
+}
+section .item .item-container {
+    box-shadow: 0px 0px 4px rgba(56, 56, 56, 0.3);
+    padding: 20px;
+    float: left;
+    width: 480px;
+}
+section .item .item-container .image-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    width: 200px;
+    float: left;
+}
+section .item .item-container .text-container {
+    padding: 15px;
+    float: left;
+    width: calc(100% - 230px);
+}
+section .item .item-container .text-container h2 {
+    font-family: arial, sans-serif;
+    color: #707070;
+    margin: 0;
+}
+section .item .item-container .text-container h5 {
+    font-family: arial, sans-serif;
+    color: #707070;
+    margin: 4px 0;
+}
+section .item .item-container .text-container p {
+    font-family: arial, sans-serif;
+    color: #707070;
+    margin: 10px 0 20px;
+    font-size: 14px;
+}
+section .item .item-container .text-container form {
+    width: 200px;
+    height: 40px;
+    position: relative;
+    background-color: #2E76B5;
+}
+section .item .item-container .text-container form button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    height: 40px;
+    width: 120px;
+    float: left;
+    cursor:pointer;
+}
+section .item .item-container .text-container form input {
+    float: left;
+    width: 30px;
+    height: 40px;
+    outline: none;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    color: #fff;
+}
+section .item .item-container .text-container form .icon {
+    position: absolute;
+    background-color: #215D91;
+    height: 40px;
+    width: 50px;
+    right: 0;
+    top: 0;
+}
+section .item .item-container .text-container form .icon img {
+    width: 30px;
+    margin-top: 5px;
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+section .item .item-container .text-container form .icon:hover img {
+    transform: scale(1.1);
+}
