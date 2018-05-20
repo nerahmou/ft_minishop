@@ -18,7 +18,10 @@ if ($_POST && isset($_POST['name'])) {
 
 ?>
 
-<?php html_header('Ajouter une catégorie') ?>
+<?php
+include '../../public/navbar_admin_p.php';
+
+html_header('Ajouter une catégorie') ?>
 
 <?php html_message() ?>
 

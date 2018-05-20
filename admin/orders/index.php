@@ -3,12 +3,14 @@
 session_start();
 require_once '../../src/function.php';
 
+require '../../public/navbar_admin_p.php';
 html_header('Administration');
+
 if (!empty($_GET['id'])) {
     articles_update_stock(orders_from_id($_GET['id']));
 }
 ?>
-<li><a href="../">Retour</a></li>
+
 <h4>Commandes</h4>
 <table style="width:75%">
     <tr>

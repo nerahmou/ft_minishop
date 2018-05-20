@@ -24,7 +24,9 @@ if ($_POST && $_GET && isset($_GET['id'])) {
 
 ?>
 
-<?php html_header("Edition article " . article_id(articles_from_id($_GET['id']))); ?>
+<?php
+include '../../public/navbar_admin_p.php';
+html_header("Edition article " . article_id(articles_from_id($_GET['id']))); ?>
 
 <?php html_message(); ?>
 

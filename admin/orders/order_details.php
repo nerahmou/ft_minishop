@@ -3,7 +3,9 @@
 session_start();
 require_once '../../src/function.php';
 
+require '../../public/navbar_admin_p.php';
 html_header('Administration');
+
 ?>
 
 <li><a href="../orders/">Retour</a></li>

@@ -23,7 +23,12 @@ if ($_POST && $_GET && isset($_GET['email'])) {
 
 ?>
 
-<?php html_header("Edition de l'utilisateur " . ucfirst(users_from_email($_GET['email'])['firstname']) . ' ' . ucfirst(users_from_email($_GET['email'])['lastname'])) ?>
+<?php
+include '../../public/navbar_admin_p.php';
+
+html_header("Edition de l'utilisateur " . ucfirst(users_from_email($_GET['email'])['firstname']) . ' ' . ucfirst(users_from_email($_GET['email'])['lastname']));
+
+?>
 
 <?php html_message(); ?>
 

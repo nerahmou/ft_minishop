@@ -30,23 +30,13 @@ function get_articles() {
     });
 }
 
-html_header(config()['name']);
 
+include 'public/navbar.php';
+html_header(config()['name']);
 ?>
 
 
-<?php if (!user_is_connected()) { ?>
-<li><a href="/register/">S'enregistrer</a></li>
-<li><a href="/login/">Se connecter</a></li>
-<?php } else { ?>
-<li><a href="/logout/">Se déconnecter</a></li>
-<?php } ?>
 
-<?php if (user_is_admin()) {?>
-    <li><a href="/admin/">Administration</a></li>
-<?php } ?>
-<br>
-<li><a href="/cart/">Mon panier (<?php echo count_cart() ?>)</a></li>
 
 
 <?php if (user_is_connected()) { ?>

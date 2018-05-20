@@ -149,6 +149,17 @@ function html_header($name) {
 <h1>$name</h1>";
 }
 
+function html_navbar() {
+   echo "
+   <ul>
+  <li><a class=\"active\" href=\"#home\">Home</a></li>
+  <li><a href=\"#news\">News</a></li>
+  <li><a href=\"#contact\">Contact</a></li>
+  <li><a href=\"#about\">About</a></li>
+  <li style=\"float: right;\"><a href=\"#about\">test</a></li>
+</ul>";
+}
+
 function html_footer() {
     echo "</body></html>";
 }

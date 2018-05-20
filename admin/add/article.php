@@ -19,7 +19,9 @@ if ($_POST) {
 
 ?>
 
-<?php html_header('Ajouter un article') ?>
+<?php
+include '../../public/navbar_admin_p.php';
+html_header('Ajouter un article') ?>
 
 <?php html_message() ?>
 
