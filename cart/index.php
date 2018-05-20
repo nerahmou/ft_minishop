@@ -22,19 +22,18 @@ if (isset($_POST, $_POST['order']))
             <th>Prix</th>
             <th>Couleur</th>
             <th>Image</th>
-            <th>Prix</th>
+
             <th></th>
         </tr>
         <?php foreach ($_SESSION['cart'] as $line) { ?>
             <tr>
                 <td style="border: burlywood 3px solid"><?php echo articles_from_id($line['id'])['name'] ?></td>
                 <td style="border: burlywood 3px solid"><?php echo $line['quantity'] ?></td>
-                <td style="border: burlywood 3px solid"><?php echo articles_from_id($line['id'])['price'] . " " . config()['currency']?></td>
+                <td style="border: burlywood 3px solid"><?php echo number_format(articles_from_id($line['id'])['price'] , 0 , "." , " " ) . " " . config()['currency']?></td>
                 <td style="border: burlywood 3px solid"><?php if (empty($line['color'])) echo "Pas de couleur"; else echo $line['color']; ?></td>
                 <td style="border: burlywood 3px solid">
                     <img style="width: 50px" src="<?php echo articles_from_id($line['id'])['img']; ?>">
                 </td >
-                <td style="border: burlywood 3px solid"><?php echo number_format(articles_from_id($line['id'])['price'] , 0 , "." , " " )?> €</td>
                 <td style="border: burlywood 3px solid">
                     <form method="post">
                         <button name="delete" value="<?php echo $line['id'] ?>">Supprimer</button>
@@ -44,7 +43,7 @@ if (isset($_POST, $_POST['order']))
         <?php } ?>
         <tr>
             <td colspan="5">Total</td>
-            <td style="border: burlywood 3px solid"><?php echo number_format(get_total() , 0 , "." , " " ) ?> €</td>
+            <td style="border: burlywood 3px solid"><?php echo number_format(get_total() , 0 , "." , " " ) . " " . config()['currency']?> </td>
         </tr>
     </table>
     <?php if (user_is_connected()) { ?>
