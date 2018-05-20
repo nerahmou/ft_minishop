@@ -1,5 +1,6 @@
 <ul>
 <?php if (!user_is_connected()) { ?>
+    <li><a href="/">Accueil</a></li>
     <li><a href="/register">S'enregistrer</a></li>
     <li><a href="/login">Se connecter</a></li>
 <?php } else { ?>

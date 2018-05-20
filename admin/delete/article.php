@@ -13,4 +13,4 @@ if ($_GET && isset($_GET['id'])) {
     }
 }
 
-header('Location: /admin/');
+header('Location: /admin/articles');
