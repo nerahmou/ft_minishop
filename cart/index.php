@@ -4,6 +4,8 @@ session_start();
 setlocale(LC_MONETARY, 'nl_NL.UTF-8');
 require_once '../src/function.php';
 
+need_install();
+
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
 if (isset($_POST, $_POST['order']))

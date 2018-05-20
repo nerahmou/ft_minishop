@@ -4,6 +4,8 @@ session_start();
 
 require_once('../src/function.php');
 
+need_install();
+
 // IF CONNECTED REDIRECT TO HOME PAGE
 if (user_is_connected()) {
     header('Location: /');

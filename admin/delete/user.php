@@ -2,6 +2,8 @@
 
 require_once '../../src/function.php';
 
+need_install();
+
 if (!user_is_admin()) header('Location: /');
 
 if ($_GET && isset($_GET['email'])) {

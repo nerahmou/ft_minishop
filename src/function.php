@@ -122,8 +122,13 @@ function html_message()
     }
 }
 
+function need_install() {
+    if (!conf_is_created()) header('Location: /install/');
+}
+
 
 function html_header($name) {
+
     echo "
     <html>
 <head>

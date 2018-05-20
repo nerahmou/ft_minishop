@@ -3,6 +3,7 @@
 session_start();
 
 require_once('../src/function.php');
+need_install();
 
 $can_disp_msg = true;
 
