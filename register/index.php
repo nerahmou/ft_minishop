@@ -31,7 +31,9 @@ if ($_POST) {
 
 ?>
 
-<?php html_header('S\'inscrire') ?>
+<?php
+include '../public/navbar.php';
+html_header('S\'inscrire') ?>
 
 <?php $can_disp_msg ? html_message() : 0 ?>
 

@@ -25,7 +25,10 @@ if ($_POST) {
 }
 ?>
 
-<?php html_header('Se connecter') ?>
+<?php
+
+include '../public/navbar.php';
+html_header('Se connecter') ?>
 
 <?php html_message() ?>
 
