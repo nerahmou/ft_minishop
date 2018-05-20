@@ -11,6 +11,19 @@ if (isset($_POST, $_POST['id']))
     if (!insert_article(articles_from_id($_POST['id']), $_POST['quantity']))
         set_error_message("Quantité superieur au stock disponible : (".articles_from_id($_POST['id'])['stock'].")");
 
+function get_articles() {
+    $articles =  (($_GET && isset($_GET['category']) && categories_from_name($_GET['category'])))
+        ? articles_from_category(categories_from_name($_GET['category']))
+        : articles();
+    return array_filter($articles, function ($e) {
+        if ($_GET && isset($_GET['search']) && !empty($_GET['search'])) {
+            return  strpos(strtolower(article_name($e)), strtolower($_GET['search'])) !== false ||
+                    strpos(strtolower(article_description($e)), strtolower($_GET['search'])) !== false;
+        }
+        return true;
+    });
+}
+
 html_header(config()['name']);
 
 ?>
@@ -41,8 +54,23 @@ html_message();
 
 ?>
 
+<h4>Trier:
+    <form method="get" style="display: inline">
+        <select name="category">
+            <option value="all">Toutes</option>
+            <?php foreach (categories() as $cat) { ?>
+                <option value="<?php echo $cat ?>"><?php echo ucfirst($cat) ?></option>
+            <?php } ?>
+        </select>
+        <input type="text" name="search" placeholder="Rechercher un mot" value="<?php echo !empty($_GET['search']) ? $_GET['search'] : '' ?>">
+        <input type="submit" value="Go!">
+    </form>
+
+
+</h4>
+
 <section id="page">
-    <?php foreach (articles() as $key => $elem) { ?>
+    <?php foreach (get_articles() as $key => $elem) { ?>
     <div class="item">
         <div class="item-container">
             <div class="image-container" style="background-image: url(<?php echo $elem['img'] ?>)"></div>
