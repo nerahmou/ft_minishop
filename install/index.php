@@ -4,7 +4,7 @@ require_once '../src/function.php';
 
 if (conf_is_created()) header('Location: /');
 
-if ($_POST) {
+if ($_POST && !conf_is_created()) {
     if (!is_string($msg = config_is_valid_creation()) && $msg) {
         $user = config_creator_post();
         $_SESSION['email'] = $user['email'];
