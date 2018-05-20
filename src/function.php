@@ -119,8 +119,8 @@ function get_success_message()
 function html_message()
 {
     if (!isset(getallheaders()['Location'])) {
-        if (has_error_message()) { ?> <h3>Error: <?php echo get_error_message() ?></h3> <?php }
-        if (has_success_message()) { ?> <h3>Success: <?php echo get_success_message() ?></h3> <?php }
+        if (has_error_message()) { ?> <h3 style="color: #880000;">Erreur: <?php echo get_error_message() ?></h3> <?php }
+        if (has_success_message()) { ?> <h3 style="color: #005900;">Succèss: <?php echo get_success_message() ?></h3> <?php }
     }
 }
 

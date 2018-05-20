@@ -7,9 +7,15 @@ require_once 'src/function.php';
 
 need_install();
 
+$can_disp_msg = true;
+
 if (isset($_POST, $_POST['id']))
-    if (!insert_article(articles_from_id($_POST['id']), $_POST['quantity']))
-        set_error_message("Quantité superieur au stock disponible : (".articles_from_id($_POST['id'])['stock'].")");
+    if (!insert_article(articles_from_id($_POST['id']), $_POST['quantity'])) {
+        set_error_message("Quantité superieur au stock disponible : (" . articles_from_id($_POST['id'])['stock'] . ")");
+        $can_disp_msg = false;
+        header('location: /');
+    }
+    else header('location: /');
 
 function get_articles() {
     $articles =  (($_GET && isset($_GET['category']) && categories_from_name($_GET['category'])))
@@ -50,7 +56,9 @@ html_header(config()['name']);
 <h3>Liste des articles : </h3>
 
 <?php
-html_message();
+
+if ($can_disp_msg)
+    html_message();
 
 ?>
 

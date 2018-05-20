@@ -30,12 +30,12 @@ function user_from_post($rank = 0)
 
 function user_from_post_edit($origin)
 {
-    return new_user(
-        $_POST['firstname'],
-        $_POST['lastname'],
-        $_POST['email'],
-        $origin['password'],
-        intval($_POST['rank'])
+    return $user = array(
+        'firstname' => $_POST['firstname'],
+        'lastname' => $_POST['lastname'],
+        'email' => $_POST['email'],
+        'password' => $origin['password'],
+        'rank' => intval($_POST['rank']),
     );
 }
 
@@ -95,8 +95,8 @@ function user_is_valid_register()
     if (is_set_in($_POST, 'firstname', 'lastname', 'email', 'password', 'confirm_password')) {
         if (!is_email($_POST['email'])) return 'Email invalide.';
         if (users_exist($_POST['email'])) return 'L\'email existe déjà.';
-        if (!preg_match('/^[A-Za-z]{3,}$/', $_POST['firstname'])) return 'Prénom invalide. (min 3 caractères alphabétiques)';
-        if (!preg_match('/^[A-Za-z]{3,}$/', $_POST['lastname'])) return 'Nom invalide. (min 3 caractères alphabétiques)';
+        if (preg_match('/^\-+$/', $_POST['firstname']) || !preg_match('/^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ-]{3,}$/', $_POST['firstname'])) return 'Prénom invalide. (min 3 caractères alphabétiques)';
+        if (preg_match('/^\-+$/', $_POST['lastname']) || !preg_match('/^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ-]{3,}$/', $_POST['lastname'])) return 'Nom invalide. (min 3 caractères alphabétiques)';
         if (strlen($_POST['password']) < 4) return 'Mot de passe invalide (min 4 caractères).';
         if ($_POST['password'] !== $_POST['confirm_password']) return 'La confirmation du mot de passe a échoué.';
         return true;
@@ -108,8 +108,8 @@ function user_is_valid_edit($email) {
     if (is_set_in($_POST, 'firstname', 'lastname', 'email', 'rank')) {
         if (!is_email($_POST['email'])) return 'Email invalide.';
         if ($_POST['email'] !== $email && users_exist($_POST['email'])) return 'L\'email existe déjà.';
-        if (!preg_match('/^[A-Za-z]{3,}$/', $_POST['firstname'])) return 'Prénom invalide. (min 3 caractères alphabétiques)';
-        if (!preg_match('/^[A-Za-z]{3,}$/', $_POST['lastname'])) return 'Nom invalide. (min 3 caractères alphabétiques)';
+        if (preg_match('/^\-+$/', $_POST['firstname']) || !preg_match('/^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ-]{3,}$/', $_POST['firstname'])) return 'Prénom invalide. (min 3 caractères alphabétiques)';
+        if (preg_match('/^\-+$/', $_POST['lastname']) || !preg_match('/^[A-Za-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ-]{3,}$/', $_POST['lastname'])) return 'Nom invalide. (min 3 caractères alphabétiques)';
         if (intval($_POST['rank']) < 0) return 'Rang invalide. (sup ou égal à 0)';
         return true;
     }
