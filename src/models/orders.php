@@ -9,7 +9,8 @@ function new_order($shopper, $cart, $total)
         'shopper' => $shopper,
         'cart' => $cart,
         'date' => date("j/m/Y",time()),
-        'total' => $total
+        'total' => $total,
+        'is_validate' => 0
     );
 }
 

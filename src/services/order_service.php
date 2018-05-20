@@ -27,6 +27,13 @@ function order_insert($order)
     unset($_SESSION['cart']);
 }
 
+function orders_remove($id) {
+    global $orders;
+    unset($articles[$id]);
+    $articles = array_filter($articles);
+    articles_save();
+}
+
 function orders_from_id($id)
 {
     global $orders;

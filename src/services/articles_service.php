@@ -42,6 +42,22 @@ function articles_from_id($id)
     return NULL;
 }
 
+function articles_update_stock($order)
+{
+    $cart = $order['cart'];
+    $articles = articles();
+    foreach ($cart as $art_cart)
+        foreach ($articles as $art)
+            if ($art_cart['id'] === $art['id'])
+            {
+                $art_tmp = articles_from_id($art['id']);
+                $art_tmp['stock'] -= $art_cart['quantity'];
+                articles_remove($art_tmp['id']);
+                articles_insert($art_tmp);
+            }
+
+}
+
 function articles_remove($id) {
     global $articles;
     unset($articles[$id]);
