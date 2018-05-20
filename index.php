@@ -41,7 +41,7 @@ foreach (articles() as $key => $elem) { ?>
     <div style="border: solid 1px black; display: inline-block" >
         <p /> Nom : <?php echo $elem['name'] ?></p>
         <p /> Description : <?php echo $elem['description'] ?></p>
-        <p /> Prix : <?php echo $elem['price'] . " " . config()['currency'] ?></p>
+        <p /> Prix : <?php echo number_format($elem['price'], 2, ".", " ") . " " . config()['currency'] ?></p>
         <img style="width: 200px; " src="<?php echo $elem['img'] ?>"/>
         <p /> Catégories : <?php echo implode(', ', article_categories($elem));?></p>
 
