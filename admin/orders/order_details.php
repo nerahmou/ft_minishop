@@ -27,9 +27,9 @@ if (isset($_GET, $_GET['id'])) {
         </tr>
         <?php foreach ($cart as $line) { ?>
             <tr>
-                <td><?php echo articles_from_id($line['id'])['name'] ?></td>
+                <td><?php ;echo articles_from_id($line['id'])['name'] ?></td>
                 <td><?php echo $line['quantity'] ?></td>
-                <td><?php echo number_format(articles_from_id($line['id'])['price'] , 0 , "." , " " ) . " " . config()['currency']?></td>
+                <td><?php echo number_format($line['price'] , 0 , "." , " " ) . " " . config()['currency']?></td>
                 <td><?php if (!empty($line['color'])) echo $line['color']; ?></td>
                 <td>
                     <img style="width: 50px" src="<?php echo articles_from_id($line['id'])['img']; ?>">

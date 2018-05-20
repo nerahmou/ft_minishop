@@ -10,9 +10,7 @@ function get_total()
 {
     $total = 0;
     foreach ($_SESSION['cart'] as $line)
-    {
         $total += articles_from_id($line['id'])['price'] * $line['quantity'];
-    }
     return ($total);
 }
 
@@ -40,7 +38,8 @@ function insert_article($article, $quantity)
         array_push($_SESSION['cart'], array(
                 'id' => article_id($article),
                 'quantity' => $quantity,
-                'color' => $article['colors'])
+                'color' => $article['colors'],
+                'price' => article_price($article))
         );
     return true;
 }

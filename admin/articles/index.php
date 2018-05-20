@@ -31,7 +31,7 @@ html_header('Administration');
             <td><?php echo article_name($val) ?></td>
             <td><?php echo article_description($val) ?></td>
             <td><img src="<?php echo article_img($val) ?>" height="50" alt=""></td>
-            <td><?php echo article_price($val) ?></td>
+            <td><?php echo number_format(article_price($val) , 0 , "." , " " ) . " " . config()['currency'] ?></td>
             <td><?php echo article_stock($val) ?></td>
             <td><?php echo implode(', ', article_categories($val)) ?></td>
             <td>

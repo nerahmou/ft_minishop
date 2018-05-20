@@ -26,7 +26,7 @@ if (!empty($_GET['id'])) {
         <tr>
             <td><?php echo order_id($val) ?></td>
             <td><?php echo order_shopper($val) ?></td>
-            <td><?php echo number_format($val['total'], 2, ".", " ") . " " . config()['currency']?></td>
+            <td><?php echo number_format($val['total'], 0, ".", " ") . " " . config()['currency']?></td>
             <td><?php echo order_date($val) ?></td>
             <td>
                 <?php if (!$val['is_validate']) { ?>
