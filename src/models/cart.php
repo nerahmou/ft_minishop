@@ -43,3 +43,7 @@ function drop_article($article_id)
     $_SESSION['cart'] = $tmp;
     unset($tmp);
 }
+
+function count_cart() {
+    return isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+}

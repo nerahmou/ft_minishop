@@ -12,8 +12,9 @@ if (!user_is_admin()) header('Location: /');
 
 <li><a href="/admin/add/article.php">Ajouter un article</a></li>
 <li><a href="/admin/add/category.php">Ajouter une catégorie</a></li>
-
 <li><a href="/admin/orders/"></a>Les commandes (N)</li>
+<br>
+<li><a href="/">Retour</a></li>
 
 <br>
 <h4>Articles</h4>
