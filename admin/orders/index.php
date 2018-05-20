@@ -5,7 +5,8 @@ require_once '../../src/function.php';
 
 html_header('Administration');
 if (!empty($_GET['id'])) {
-    articles_update_stock(orders_from_id($_GET['id']));
+    valid_order(orders_from_id($_GET['id']));
+    $_GET['id']="";
 }
 ?>
 <li><a href="../">Retour</a></li>
@@ -29,7 +30,7 @@ if (!empty($_GET['id'])) {
                 <?php if (!$val['is_validate']) { ?>
                  <a href="/admin/orders?id=<?php echo order_id($val) ?>">Valider</a>
                 <?php } else echo "<a>Commande validé</a>" ?>
-                <a href="/admin/orders/order_details.php?id=<?php echo order_id($val) ?>">Detail commande</a>
+                | <a href="/admin/orders/order_details.php?id=<?php echo order_id($val) ?>">Detail commande</a>
             </td>
         </tr>
     <?php } ?>
