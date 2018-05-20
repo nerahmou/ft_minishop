@@ -29,9 +29,9 @@ function order_insert($order)
 
 function orders_remove($id) {
     global $orders;
-    unset($articles[$id]);
-    $articles = array_filter($articles);
-    articles_save();
+    unset($orders[$id]);
+    $orders = array_filter($orders);
+    orders_save();
 }
 
 function orders_from_id($id)

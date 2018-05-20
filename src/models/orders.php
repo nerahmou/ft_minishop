@@ -10,13 +10,17 @@ function new_order($shopper, $cart, $total)
         'cart' => $cart,
         'date' => date("j/m/Y",time()),
         'total' => $total,
-        'is_validate' => 0
+        'is_validate' => false
     );
 }
 
 function valid_order($order)
 {
-
+    articles_update_stock($order);
+    $ord_tmp = $order;
+    $ord_tmp['is_validate'] = true;
+    orders_remove($ord_tmp['id']);
+    order_insert($ord_tmp);
 }
 
 //--------------------------------------------------------------
