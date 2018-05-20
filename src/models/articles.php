@@ -68,6 +68,13 @@ function article_categories($article)
     return $article['categories'];
 }
 
+function article_description_trunc($article)
+{
+    if (strlen($article['description']) > 160)
+        return  substr($article['description'], 0, 160) . "...";
+    return $article['description'];
+}
+
 function article_stock($article)
 {
     return $article['stock'];

@@ -52,6 +52,7 @@ function articles_remove($id) {
 function articles_from_category($category)
 {
     global $articles;
+    if ($category === 'all') return $articles;
     $ret = [];
     foreach ($articles as $val)
         if (in_array($category, $val['categories'])) array_push($ret, $val);
