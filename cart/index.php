@@ -7,11 +7,17 @@ need_install();
 
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
-if (isset($_POST, $_POST['order']))
+if (isset($_POST, $_POST['order'])) {
     order_insert(new_order(user_get_firstname(), $_SESSION['cart'], get_total()));
+    set_success_message("Commande Validé !");
+}
+
 ?>
 
+
     <h2 style="text-align: center">Mon panier :</h2>
+
+<?php echo get_success_message() ?>
 
 <?php if (!empty($_SESSION['cart'])) { ?>
     <table style="border: burlywood 3px solid; border-collapse: collapse; margin: auto">
@@ -55,8 +61,3 @@ if (isset($_POST, $_POST['order']))
 } else {
     echo "<p>Le panier est vide</p>";
 } ?>
-
-<?php
-echo "<pre>";
-    print_r(orders());
-?>
