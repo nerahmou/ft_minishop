@@ -10,11 +10,13 @@ require_once 'services/categories_service.php';
 require_once 'services/users_service.php';
 require_once 'services/articles_service.php';
 require_once 'services/config_service.php';
+require_once 'services/order_service.php';
 
 require_once 'models/config.php';
 require_once 'models/users.php';
 require_once 'models/articles.php';
 require_once 'models/cart.php';
+require_once 'models/orders.php';
 /**
  * This functions check if all variables after first parameters
  * are set in the array passed in the first parameter.

@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-setlocale(LC_MONETARY, 'nl_NL.UTF-8');
 require_once '../src/function.php';
 
 need_install();
@@ -9,7 +8,7 @@ need_install();
 if (isset($_POST, $_POST['delete']))
     drop_article($_POST['delete']);
 if (isset($_POST, $_POST['order']))
-    echo "<script>alert('commande validee');</script>";
+    order_insert(new_order(user_get_firstname(), $_SESSION['cart'], get_total()));
 ?>
 
     <h2 style="text-align: center">Mon panier :</h2>
@@ -56,3 +55,8 @@ if (isset($_POST, $_POST['order']))
 } else {
     echo "<p>Le panier est vide</p>";
 } ?>
+
+<?php
+echo "<pre>";
+    print_r(orders());
+?>

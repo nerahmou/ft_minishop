@@ -30,13 +30,19 @@ function insert_article($article, $quantity)
     if ($quantity > $article['stock'])
         return false;
     if (($position = is_in_cart($article)) !== false)
-        $_SESSION['cart'][$position]['quantity'] += $quantity;
+    {
+        if ($_SESSION['cart'][$position]['quantity'] + $quantity <= $article['stock'])
+            $_SESSION['cart'][$position]['quantity'] += $quantity;
+        else
+            return false;
+    }
     else
         array_push($_SESSION['cart'], array(
                 'id' => article_id($article),
                 'quantity' => $quantity,
                 'color' => $article['colors'])
         );
+    return true;
 }
 
 function drop_article($article_id)

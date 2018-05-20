@@ -8,9 +8,11 @@ require_once 'src/function.php';
 need_install();
 
 if (isset($_POST, $_POST['id']))
-    insert_article(articles_from_id($_POST['id']), $_POST['quantity']);
+    if (!insert_article(articles_from_id($_POST['id']), $_POST['quantity']))
+        set_error_message("Quantité superieur au stock disponible : (".articles_from_id($_POST['id'])['stock'].")");
 
 html_header(config()['name']);
+
 ?>
 
 
@@ -28,8 +30,6 @@ html_header(config()['name']);
 <li><a href="/cart/">Mon panier (<?php echo count_cart() ?>)</a></li>
 
 
-
-
 <?php if (user_is_connected()) { ?>
     <p>Vous êtes connecté <?php echo ucfirst(user_get_firstname()) . ' ' . ucfirst(user_get_lastname()) ?></p>
 <?php } ?>
@@ -37,6 +37,8 @@ html_header(config()['name']);
 <h3>Liste des articles : </h3>
 
 <?php
+html_message();
+
 foreach (articles() as $key => $elem) { ?>
     <div style="border: solid 1px black; display: inline-block" >
         <p /> Nom : <?php echo $elem['name'] ?></p>
