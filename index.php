@@ -43,7 +43,7 @@ foreach (articles() as $key => $elem) { ?>
     <div style="border: solid 1px black; display: inline-block" >
         <p /> Nom : <?php echo $elem['name'] ?></p>
         <p /> Description : <?php echo $elem['description'] ?></p>
-        <p /> Prix : <?php echo $elem['price'] ?></p>
+        <p /> Prix : <?php echo number_format($elem['price'] , 0 , "." , " " )?> €</p>
         <img style="width: 200px; " src="<?php echo $elem['img'] ?>"/>
         <p /> Catégories : <?php echo implode(', ', article_categories($elem));?></p>
         <?php if(!user_is_admin()) {?>

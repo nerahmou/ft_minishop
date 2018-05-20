@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+setlocale(LC_MONETARY, 'nl_NL.UTF-8');
 require_once '../src/function.php';
 
 if (isset($_POST, $_POST['delete']))
@@ -19,6 +19,7 @@ if (isset($_POST, $_POST['order']))
             <th>Quantité</th>
             <th>Couleur</th>
             <th>Image</th>
+            <th>Prix</th>
             <th></th>
         </tr>
         <?php foreach ($_SESSION['cart'] as $line) { ?>
@@ -28,7 +29,8 @@ if (isset($_POST, $_POST['order']))
                 <td style="border: burlywood 3px solid"><?php if (empty($line['color'])) echo "Pas de couleur"; else echo $line['color']; ?></td>
                 <td style="border: burlywood 3px solid">
                     <img style="width: 50px" src="<?php echo articles_from_id($line['id'])['img']; ?>">
-                </td>
+                </td >
+                <td style="border: burlywood 3px solid"><?php echo number_format(articles_from_id($line['id'])['price'] , 0 , "." , " " )?> €</td>
                 <td style="border: burlywood 3px solid">
                     <form method="post">
                         <button name="delete" value="<?php echo $line['id'] ?>">Supprimer</button>
@@ -36,6 +38,10 @@ if (isset($_POST, $_POST['order']))
                 </td>
             </tr>
         <?php } ?>
+        <tr>
+            <td colspan="5">Total</td>
+            <td style="border: burlywood 3px solid"><?php echo number_format(get_total() , 0 , "." , " " ) ?> €</td>
+        </tr>
     </table>
     <?php if (user_is_connected()) { ?>
         <form method="post" style="text-align: center; margin-top: 10px">

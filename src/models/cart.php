@@ -6,6 +6,16 @@ function create_cart(){
     return true;
 }
 
+function get_total()
+{
+    $total = 0;
+    foreach ($_SESSION['cart'] as $line)
+    {
+        $total += articles_from_id($line['id'])['price'] * $line['quantity'];
+    }
+    return ($total);
+}
+
 function is_in_cart($article)
 {
     for ($i = 0; $i < count($_SESSION['cart']); $i++)
