@@ -17,13 +17,14 @@ function new_user($firstname, $lastname, $email, $password, $rank = 0)
     );
 }
 
-function user_from_post()
+function user_from_post($rank = 0)
 {
     return new_user(
         $_POST['firstname'],
         $_POST['lastname'],
         $_POST['email'],
-        $_POST['password']
+        $_POST['password'],
+        $_POST['rank'] = $rank
     );
 }
 

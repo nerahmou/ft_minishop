@@ -17,6 +17,7 @@ if (isset($_POST, $_POST['order']))
         <tr style="border: burlywood 3px solid;">
             <th>Nom</th>
             <th>Quantité</th>
+            <th>Prix</th>
             <th>Couleur</th>
             <th>Image</th>
             <th>Prix</th>
@@ -26,6 +27,7 @@ if (isset($_POST, $_POST['order']))
             <tr>
                 <td style="border: burlywood 3px solid"><?php echo articles_from_id($line['id'])['name'] ?></td>
                 <td style="border: burlywood 3px solid"><?php echo $line['quantity'] ?></td>
+                <td style="border: burlywood 3px solid"><?php echo articles_from_id($line['id'])['price'] . " " . config()['currency']?></td>
                 <td style="border: burlywood 3px solid"><?php if (empty($line['color'])) echo "Pas de couleur"; else echo $line['color']; ?></td>
                 <td style="border: burlywood 3px solid">
                     <img style="width: 50px" src="<?php echo articles_from_id($line['id'])['img']; ?>">

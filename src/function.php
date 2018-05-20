@@ -9,7 +9,9 @@
 require_once 'services/categories_service.php';
 require_once 'services/users_service.php';
 require_once 'services/articles_service.php';
+require_once 'services/config_service.php';
 
+require_once 'models/config.php';
 require_once 'models/users.php';
 require_once 'models/articles.php';
 require_once 'models/cart.php';
@@ -119,26 +121,20 @@ function html_message()
         if (has_success_message()) { ?> <h3>Success: <?php echo get_success_message() ?></h3> <?php }
     }
 }
+
+
 function html_header($name) {
     echo "
+    <html>
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\"
+          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
+    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
+    <link rel='stylesheet' href='/public/css/style.css'>
     <title>$name</title>
-    
-    <style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #eeeeee;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #eeeeee;
-    }
+</head>
+<p>
 </style>
 </head>
 <body>
