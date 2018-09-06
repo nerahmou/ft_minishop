@@ -1,4 +1,4 @@
-# FT_MINISHOP
+# FT_MINISHOP (Groupe de 2)
 
 ## Partie utilisateurs
 
